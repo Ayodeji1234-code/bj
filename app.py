@@ -1,7 +1,34 @@
 import streamlit as st
 from pathlib import Path
 import time
+import base64
 
+def set_background(image_file):
+    with open(image_file, "rb") as img:
+        encoded = base64.b64encode(img.read()).decode()
+
+    st.markdown(
+        f"""
+        <style>
+
+        .stApp {{
+            background-image: linear-gradient(
+                rgba(0,0,0,0.35),
+                rgba(0,0,0,0.35)
+            ),
+            url("data:image/jpeg;base64,{encoded}");
+
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center 25%;
+            background-attachment: fixed;
+        }}
+
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+set_background(r"C:\Users\tt\python\Birthday\IMG-20260705-WA0072.jpg")    
 # -------------------------------------------------------
 # CUSTOM STYLING
 # -------------------------------------------------------
@@ -14,18 +41,30 @@ st.markdown("""
 }
 
 h1{
-    color:#d63384;
+    color:white;
     text-align:center;
+    text-shadow:2px 2px 10px black;
 }
 
 h3{
+    color:white;
     text-align:center;
 }
 
+p, div{
+    color:white;
+}
+
 .message{
-    background:transparent;
-    padding:25px;
-    border-radius:15px;
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,.4);
+    font-size: 20px;
+    line-height: 1.8;
+    margin-bottom: 30px;
 }
 
 .footer{
@@ -141,34 +180,30 @@ if st.button("🎥 Click Here For Your Video"):
 # FINAL MESSAGE
 # -------------------------------------------------------
 
-st.write("")
-st.write("")
+final_message = """
+🌹
 
-st.markdown(
-"""
-### 🌹
-
-There are thousands of people we’ll meet throughout our lives.
+There are thousands of people we'll meet throughout our lives.
 
 But there is only one person I want to spend forever growing with.
 
-That’s you.
+That's you.
 
-Years from now…
+Years from now...
 
-When our hair turns grey…
+When our hair turns grey...
 
-When our children ask how we met…
+When our children ask how we met...
 
-When life becomes busy…
+When life becomes busy...
 
-When days become difficult…
+When days become difficult...
 
 I pray we never forget this feeling.
 
 I pray we always remember that love is a choice.
 
-And every single day…
+And every single day...
 
 I will continue choosing you.
 
@@ -178,9 +213,9 @@ Again.
 
 And again.
 
-One Last Promise…
+One Last Promise...
 
-If one day life becomes difficult…
+If one day life becomes difficult...
 
 Come back here.
 
@@ -188,7 +223,7 @@ Watch this again.
 
 Read these words again.
 
-And remember…
+And remember...
 
 There is someone praying for you every day.
 
@@ -198,7 +233,7 @@ Someone who believes in you.
 
 Someone who loves you more than words could ever explain.
 
-That someone…
+That someone...
 
 is me.
 
@@ -206,10 +241,10 @@ Forever.
 
 ❤️
 
-#FOREVERSTARTSWITHTHEO’s
-🎂🎉❤️
+#FOREVERSTARTSWITHTHEO's
 """
+
+st.markdown(
+    f'<div class="message">{final_message}</div>',
+    unsafe_allow_html=True
 )
-
-st.write("")
-
