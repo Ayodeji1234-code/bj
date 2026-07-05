@@ -28,7 +28,8 @@ def set_background(image_file):
         """,
         unsafe_allow_html=True
     )
-set_background(r"C:\Users\tt\python\Birthday\IMG-20260705-WA0072.jpg")    
+background_path = Path(__file__).parent / "IMG-20260705-WA0072.jpg"
+set_background(background_path) 
 # -------------------------------------------------------
 # CUSTOM STYLING
 # -------------------------------------------------------
