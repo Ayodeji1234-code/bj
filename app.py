@@ -121,21 +121,21 @@ st.write("")
 # BUTTON TO REVEAL VIDEO
 # -------------------------------------------------------
 
+from pathlib import Path
+
 if st.button("🎥 Click Here For Your Video"):
 
-    video_path = Path(r"C:\Users\tt\python\Birthday\VID-20260705-WA0056.mp4")
+    video_path = Path(__file__).parent / "VID-20260705-WA0056.mp4"
 
     if video_path.exists():
 
         st.success("Enjoy your surprise! ❤️")
 
-        video_file = open(video_path, "rb")
-
-        st.video(video_file.read())
+        with open(video_path, "rb") as video_file:
+            st.video(video_file.read())
 
     else:
-
-        st.error("birthday_video.mp4 was not found.")
+        st.error(f"Video not found: {video_path}")
 
 # -------------------------------------------------------
 # FINAL MESSAGE
